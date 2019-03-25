@@ -172,9 +172,7 @@ func (c *Chatter) ReturnHandshake(partnerIdentity,
 		StaleReceiveKeys: make(map[int]*SymmetricKey),
 		// TODO: your code here
 		MyDHRatchet: NewKeyPair(),
-		RootChain: CombineKeys(DHCombine(c.Sessions[*partnerIdentity].PartnerDHRatchet,&c.Identity.PrivateKey),
-		DHCombine(partnerIdentity, &c.Sessions[*partnerIdentity].MyDHRatchet.PrivateKey),
-		DHCombine(c.Sessions[*partnerIdentity].PartnerDHRatchet, &c.Sessions[*partnerIdentity].MyDHRatchet.PrivateKey)),
+		RootChain: CombineKeys(DHCombine(c.Sessions[*partnerIdentity].PartnerDHRatchet,&c.Identity.PrivateKey), DHCombine(partnerIdentity, &c.Sessions[*partnerIdentity].MyDHRatchet.PrivateKey), DHCombine(c.Sessions[*partnerIdentity].PartnerDHRatchet, &c.Sessions[*partnerIdentity].MyDHRatchet.PrivateKey)),
 	}
 
 	// TODO: your code here
